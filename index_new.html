@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <div class="container" id="app_new">
@@ -24,20 +24,49 @@
       </ul>
       <hr>
 
-      <br><br>
-      <div v-for="movie in movies">
-        <img src="{{ movie.field_movie_poster[0].url }}" alt="{{ movie.field_movie_poster[0].alt }}">
-        <h4>{{ movie.title[0].value }}</h4>
-        <p>
-          <strong>Director:</strong> {{ movie.field_director[0].value }}
-        </p>
-        <p>
-          <strong>Actors:</strong> 
-          <span v-for="actor in movie.field_actors">
-            {{ actor.value }}, 
-          </span>
-        </p>
-        <br>
+      <div class="filter">
+        <input type="text" class="form-control" v-model="liveFilter">
+        <h4>Filter by genre:</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <select name="" id="" class="form-control" v-model="genreFilter">
+              <option value="">All</option>
+              <option value="Action">Action</option>
+              <option value="Comedy">Comedy</option>
+              <option value="SciFi">SciFi</option>
+              <option value="Crime">Crime</option>
+              <option value="Drama">Drama</option>
+              <option value="Romance">Romance</option>
+              <option value="Adventure">Adventure</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div v-for="movie in movies | filterBy liveFilter | filterBy genreFilter">
+        <div class="row">
+          <div class="col-sm-3">
+              <img v-bind:src="movie.field_movie_poster[0].url" alt="{{ movie.field_movie_poster[0].alt }}">
+          </div>
+          <div class="col-sm-9">
+              <h4>{{ movie.title[0].value }}</h4>
+              <p>
+                <strong>Director:</strong> {{ movie.field_director[0].value }}
+              </p>
+              <p>
+                <strong>Actors:</strong> 
+                <span v-for="actor in movie.field_actors">
+                  {{ actor.value }}, 
+                </span>
+              </p>
+              <p>
+                <strong>Genres:</strong>
+                <span v-for="genre in movie.field_genres">
+                    {{ genre.value }},
+                </span>
+              </p>
+          </div>
+        </div>
+        <hr>
       </div>
 
 
