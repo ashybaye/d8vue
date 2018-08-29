@@ -12,6 +12,11 @@
 </head>
 <body>
     <div class="container" id="app_new">
+
+      <a v-link="{path: '/hello'}">Hello</a>
+      <a v-link="{path: '/about-us'}">About Us</a>
+      <router-view></router-view>
+
       <h1>Movies database</h1>
 
       <div class="filter">
@@ -66,8 +71,18 @@
 
     </div>
 
+    <template id="hello">
+      <h2>{{ message }}</h2>
+    </template>
+
+    <template id="about-us">
+      <h2>About Us</h2>
+      <p>lalallallalllala.</p>
+    </template>    
+
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript" src="js/vue-resource.js"></script>
+    <script type="text/javascript" src="js/vue-router.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/app_new.js"></script>
 </body>

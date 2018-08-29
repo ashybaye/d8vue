@@ -1,5 +1,32 @@
 apiURL = 'http://d8vue.dd:8083/api/movies'
 
+var hello = Vue.extend({
+  template: '#hello',
+  data: function(){
+    return {
+      message: 'Hello World'
+    }
+  }
+})
+
+var aboutus = Vue.extend({
+  template: '#about-us'
+})
+
+var App = Vue.extend({});
+var router = new VueRouter();
+
+router.map({
+  '/hello' : {
+    component: hello
+  },
+  '/about-us': {
+    component: aboutus
+  }
+});
+
+router.start(App, '#app_new');
+
 new Vue({
   el: '#app_new',
 
